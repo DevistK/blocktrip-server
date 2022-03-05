@@ -1,10 +1,12 @@
 import {
+    BeforeInsert,
     Column,
     CreateDateColumn,
     Entity,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
+
 
 @Entity()
 export class User {
@@ -18,10 +20,10 @@ export class User {
     password: string;
 
     @Column({ comment: '유저 연락처' })
-    hp: number;
+    hp: string;
 
     @Column({ comment: '유저 생년월일' })
-    birth: number;
+    birth: string;
 
     @CreateDateColumn({ name: 'created_at' })
     created_at: Date;
