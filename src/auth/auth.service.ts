@@ -9,10 +9,11 @@ import { hashPasswordCompare } from 'src/utils/bcrypt';
 export class AuthService {
     constructor(
         private userService: UserService,
-        // private jwtService: JwtService,
+        private jwtService: JwtService,
     ) { }
 
     async validateUser(email: string, password: string): Promise<any> {
+
         const user = await this.userService.findOneUser(email);
         if (!user) {
             Logger.error(`[POST]=> 등록되지 않은 유저입니다.`);
@@ -22,6 +23,7 @@ export class AuthService {
                 error: 'Forbidden',
             })
         }
+
         const isMatch = await hashPasswordCompare(password, user.password);
         if (isMatch) {
             const { password, ...result } = user;
@@ -36,6 +38,12 @@ export class AuthService {
         }
     }
 
-    // async login(user: User) { }
+    async login(user: User) {
+        const payload = { username: user.email, sub: user.id }
+        return {
+            Log: Logger.log(`[POST]=> JWT 토큰 발급`),
+            access_token: this.jwtService.sign(payload),
+        };
+    }
 
 }
