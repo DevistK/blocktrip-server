@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { DataBaseService } from './database/database.service';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -16,6 +17,7 @@ import * as Joi from 'joi';
         DATABASE_USER: Joi.string().required(),
         DATABASE_PASSWORD: Joi.string().required(),
         DATABASE_NAME: Joi.string().required(),
+        JWT_SECRET_KEY: Joi.string().required(),
       }),
     }),
     TypeOrmModule.forRoot(
@@ -23,6 +25,7 @@ import * as Joi from 'joi';
     ),
     UserModule,
     DatabaseModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

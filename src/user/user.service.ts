@@ -22,8 +22,8 @@ export class UserService {
         }
 
         createUserDto.password = await hashPassword(createUserDto.password);
-
         const { password, ...result } = await this.userRepository.save(createUserDto);
+
         Logger.log(`[POST]=> 유저를 등록하였습니다.`);
         return result;
     }
