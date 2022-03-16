@@ -38,17 +38,6 @@ export class AuthService {
         }
     }
 
-    async onceToken(user_profile): Promise<any> {
-        const payload = {
-            user_email: user_profile.user_email,
-            user_nick: user_profile.user_nick,
-            user_provider: user_profile.user_provider,
-            user_token: 'onceToken',
-        }
-
-        return this.jwtService.sign(payload);
-    }
-
     async login(user: User) {
         const payload = { username: user.email, sub: user.id };
         return {

@@ -18,9 +18,6 @@ import * as Joi from 'joi';
         DATABASE_PASSWORD: Joi.string().required(),
         DATABASE_NAME: Joi.string().required(),
         JWT_SECRET_KEY: Joi.string().required(),
-        NAVER_CLIENT_ID: Joi.string().required(),
-        NAVER_CLIENT_SECRET: Joi.string().required(),
-        NAVER_CALLBACK_URL: Joi.string().required(),
       }),
     }),
     TypeOrmModule.forRoot(

@@ -10,8 +10,8 @@ import {
 
 @Entity()
 export class User {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column({ length: 30, comment: '유저 아이디(이메일)' })
     email: string;

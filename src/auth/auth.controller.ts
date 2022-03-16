@@ -17,11 +17,6 @@ export class AuthController {
         return this.authService.login(req.user as User);
     }
 
-    @Get('naver')
-    async callback(@Request() req): Promise<any> {
-        return req.user;
-    }
-
     @UseGuards(JwtAuthGuard)
     @Get('profile')
     async getProfile(@Request() req) {
