@@ -2,6 +2,7 @@ import { ForbiddenException, HttpStatus, Injectable, Logger } from '@nestjs/comm
 import { InjectRepository } from '@nestjs/typeorm';
 import { hashPassword } from 'src/utils/bcrypt';
 import { Repository } from 'typeorm';
+import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './user.entity';
 
 @Injectable()
@@ -11,7 +12,7 @@ export class UserService {
         private readonly userRepository: Repository<User>,
     ) { }
 
-    async createAccount(createUserDto): Promise<any> {
+    async createAccount(createUserDto: CreateUserDto): Promise<any> {
         const isExist = await this.userRepository.findOne({ email: createUserDto.email });
         if (isExist) {
             throw new ForbiddenException({
