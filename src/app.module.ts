@@ -31,5 +31,5 @@ import * as Joi from 'joi';
   providers: [],
 })
 export class AppModule {
-  constructor(private connection: Connection) { }
+  constructor(private connection: Connection) {}
 }
