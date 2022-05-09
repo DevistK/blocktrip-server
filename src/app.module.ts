@@ -6,6 +6,7 @@ import { DataBaseService } from './database/database.service';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { AppController } from './app.controller';
 import * as Joi from 'joi';
 
 @Module({
@@ -27,7 +28,7 @@ import * as Joi from 'joi';
     DatabaseModule,
     AuthModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {
