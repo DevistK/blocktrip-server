@@ -9,7 +9,7 @@ export class DataBaseService {
   public getTypeOrmConfig(): TypeOrmModuleOptions {
     return {
       type: 'mysql',
-      host: 'localhost',
+      host: this.config.get('DATABASE_HOST'),
       port: +this.config.get('DATABASE_PORT'),
       username: this.config.get('DATABASE_USER'),
       password: this.config.get('DATABASE_PASSWORD'),
@@ -17,6 +17,7 @@ export class DataBaseService {
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
       autoLoadEntities: true,
+      logging: true,
     };
   }
 }

@@ -15,7 +15,7 @@ export class UserController {
 
   // [전체유저 리스트]
   @Get()
-  findAllUser(): Promise<User[]> {
+  fetchAllUser(): Promise<User[]> {
     return this.userService.findAllUser();
   }
 

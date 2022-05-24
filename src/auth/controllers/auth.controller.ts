@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Get,
   Logger,
@@ -17,8 +18,8 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  async login(@Request() req) {
-    return this.authService.login(req.user as User);
+  async login(@Body() data) {
+    return this.authService.login(data as User);
   }
 
   @UseGuards(JwtAuthGuard)
