@@ -1,4 +1,4 @@
-import { EntityRepository, getRepository } from 'typeorm';
+import { getRepository } from 'typeorm';
 import { User } from '../user/user.entity';
 import { CreateUserDto } from '../user/dto/create.user.dto';
 
