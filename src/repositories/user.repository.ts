@@ -2,7 +2,6 @@ import { EntityRepository, getRepository } from 'typeorm';
 import { User } from '../user/user.entity';
 import { CreateUserDto } from '../user/dto/create.user.dto';
 
-@EntityRepository(User)
 export class UserRepository {
   public async fetchAllRow() {
     return await getRepository(User).createQueryBuilder().getMany();
