@@ -13,13 +13,13 @@ export class UserController {
     return this.userService.createAccount(createUserDto);
   }
 
-  // [전체유저 리스트]
+  // [전체유저 리스트 조회]
   @Get()
   fetchAllUser(): Promise<User[]> {
     return this.userService.findAllUser();
   }
 
-  // [특정유저]
+  // [특정유저 조회]
   @Get(':email')
   findOneUser(@Param('email') email: string): Promise<User> {
     return this.userService.findOneUser(email);

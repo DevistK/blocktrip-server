@@ -1,14 +1,15 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
-import { UserModule } from './user/user.module';
-import { DataBaseService } from './database/database.service';
-import { DatabaseModule } from './database/database.module';
+import { UserModule } from './modules/user/user.module';
+import { DataBaseService } from './providers/database/database.service';
+import { DatabaseModule } from './providers/database/database.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import * as Joi from 'joi';
+import { WinstonModule } from 'nest-winston';
 
 @Module({
   imports: [
@@ -26,6 +27,9 @@ import * as Joi from 'joi';
     TypeOrmModule.forRoot(
       new DataBaseService(new ConfigService()).getTypeOrmConfig(),
     ),
+    WinstonModule.forRoot({
+      transports: [],
+    }),
     UserModule,
     DatabaseModule,
     AuthModule,

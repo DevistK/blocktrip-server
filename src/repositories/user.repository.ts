@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
-import { User } from '../user/user.entity';
-import { CreateUserDto } from '../user/dto/create.user.dto';
+import { User } from '../modules/user/user.entity';
+import { CreateUserDto } from '../modules/user/dto/create.user.dto';
 
 export class UserRepository {
   public async fetchAllRow() {

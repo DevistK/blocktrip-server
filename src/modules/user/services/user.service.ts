@@ -1,10 +1,10 @@
 import { ForbiddenException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { hashPassword } from 'src/utils/bcrypt';
+import { hashPassword } from 'src/common/utils/bcrypt';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../dto/create.user.dto';
 import { User } from '../user.entity';
-import { UserRepository } from '../../repositories/user.repository';
+import { UserRepository } from '../../../repositories/user.repository';
 
 @Injectable()
 export class UserService {
