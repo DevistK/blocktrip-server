@@ -1,5 +1,5 @@
 import { getRepository } from 'typeorm';
-import { User } from '../modules/user/user.entity';
+import { User } from './entities/user.entity';
 import { CreateUserDto } from '../modules/user/dto/create.user.dto';
 
 export class UserRepository {

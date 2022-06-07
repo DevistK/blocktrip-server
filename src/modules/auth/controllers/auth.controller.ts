@@ -2,12 +2,11 @@ import {
   Body,
   Controller,
   Get,
-  Logger,
   Post,
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { User } from 'src/modules/user/user.entity';
+import { User } from 'src/repositories/entities/user.entity';
 import { AuthService } from '../services/auth.service';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { LocalAuthGuard } from '../guards/local-auth.guard';
@@ -25,7 +24,6 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   async getProfile(@Request() req) {
-    Logger.log(`[GET]=> 프로필을 조회했습니다.`);
     return req.user;
   }
 }
