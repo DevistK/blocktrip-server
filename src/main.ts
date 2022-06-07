@@ -1,6 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { LoggerConfig } from './common/middleware/logger/logger-config';
 
 async function serverInit() {
   const app = await NestFactory.create(AppModule, {
@@ -8,6 +9,7 @@ async function serverInit() {
       origin: 'http://localhost:3000',
       credentials: true,
     },
+    logger: LoggerConfig.createApplicationLogger(),
   });
   app.useGlobalPipes(
     new ValidationPipe({

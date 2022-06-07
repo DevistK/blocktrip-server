@@ -9,7 +9,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import * as Joi from 'joi';
-import { WinstonModule } from 'nest-winston';
+import { LoggerMiddleware } from './common/middleware/logger/http-logger.middleware';
 
 @Module({
   imports: [
@@ -27,9 +27,6 @@ import { WinstonModule } from 'nest-winston';
     TypeOrmModule.forRoot(
       new DataBaseService(new ConfigService()).getTypeOrmConfig(),
     ),
-    WinstonModule.forRoot({
-      transports: [],
-    }),
     UserModule,
     DatabaseModule,
     AuthModule,
@@ -37,6 +34,9 @@ import { WinstonModule } from 'nest-winston';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
+export class AppModule implements NestModule {
   constructor(private connection: Connection) {}
+  configure(consumer: MiddlewareConsumer): any {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
 }
