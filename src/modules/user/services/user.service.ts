@@ -1,9 +1,7 @@
 import { ForbiddenException, HttpStatus, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { hashPassword } from 'src/common/utils/bcrypt';
-import { Repository } from 'typeorm';
 import { CreateUserDto } from '../dto/create.user.dto';
-import { User } from '../../../repositories/entities/user.entity';
+import { Member } from '../../../repositories/entities/member.entity';
 import { UserRepository } from '../../../repositories/user.repository';
 
 @Injectable()
@@ -33,7 +31,7 @@ export class UserService {
     return this.userRepository.fetchAllRow();
   }
 
-  async findOneUser(email: string): Promise<User> {
+  async findOneUser(email: string): Promise<Member> {
     return this.userRepository.fetchOneRow({ email: email });
   }
 }

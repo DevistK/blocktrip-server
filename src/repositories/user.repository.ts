@@ -1,24 +1,24 @@
 import { getRepository } from 'typeorm';
-import { User } from './entities/user.entity';
+import { Member } from './entities/member.entity';
 import { CreateUserDto } from '../modules/user/dto/create.user.dto';
 
 export class UserRepository {
   public async fetchAllRow() {
-    return await getRepository(User).createQueryBuilder().getMany();
+    return await getRepository(Member).createQueryBuilder().getMany();
   }
 
   public async fetchOneRow({ email }) {
-    return await getRepository(User)
+    return await getRepository(Member)
       .createQueryBuilder('user')
       .where('user.email = :email', { email: email })
       .getOne();
   }
 
   public async insertRow(createUserDto: CreateUserDto) {
-    return await getRepository(User)
+    return await getRepository(Member)
       .createQueryBuilder('user')
       .insert()
-      .into(User)
+      .into(Member)
       .values({
         email: createUserDto.email,
         password: createUserDto.password,

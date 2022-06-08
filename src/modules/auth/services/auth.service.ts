@@ -1,6 +1,6 @@
 import { ForbiddenException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User } from 'src/repositories/entities/user.entity';
+import { Member } from 'src/repositories/entities/member.entity';
 import { UserService } from 'src/modules/user/services/user.service';
 import { hashPasswordCompare } from 'src/common/utils/bcrypt';
 
@@ -23,8 +23,7 @@ export class AuthService {
 
     const isMatch = await hashPasswordCompare(password, user.password);
     if (isMatch) {
-      const { password, ...result } = user;
-      return result;
+      return user;
     } else {
       throw new ForbiddenException({
         statusCode: HttpStatus.FORBIDDEN,
@@ -34,8 +33,8 @@ export class AuthService {
     }
   }
 
-  async login(user: User) {
-    const payload = { username: user.email, sub: user.id };
+  async login(user: Member) {
+    const payload = { username: user.email, sub: 'localClient' };
     return {
       access_token: this.jwtService.sign(payload),
     };
